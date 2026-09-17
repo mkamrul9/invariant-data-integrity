@@ -1,0 +1,13 @@
+services:
+  db:
+    image: postgres:16
+    container_name: invariant_db
+    environment:
+      POSTGRES_USER: invariant_user
+      POSTGRES_PASSWORD: invariant_password
+      POSTGRES_DB: invariant_demo
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./demo-db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
